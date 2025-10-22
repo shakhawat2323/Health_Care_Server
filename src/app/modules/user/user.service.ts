@@ -78,23 +78,7 @@ const createDoctor = async (req: Request): Promise<Doctor> => {
 
   return result;
 };
-const getAllusers = async ({
-  page,
-  limit,
-  searchTerm,
-  sortBy,
-  sortOrder,
-  role,
-  status,
-}: {
-  page?: number;
-  limit?: number;
-  searchTerm?: string;
-  sortBy?: string;
-  sortOrder?: "asc" | "desc";
-  role?: string;
-  status?: string;
-}) => {
+const getAllusers = async (params: any, Option: any) => {
   const pageNambur = page || 1;
   const LimitNambur = limit || 10;
   const skip = (pageNambur - 1) * LimitNambur;
@@ -106,7 +90,7 @@ const getAllusers = async ({
         contains: searchTerm,
         mode: "insensitive",
       },
-      role: role as string,
+      role: role,
 
       status: status,
     },
